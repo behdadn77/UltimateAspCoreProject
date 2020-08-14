@@ -1,0 +1,22 @@
+﻿{
+  "Language": "fa-IR",
+  "AlertTypes": {
+    "Success": [
+      { "LoginSuccess": "ورود به حساب کاربری با موفقیت انجام شد." },
+      { "RegisterSuccess": "حساب کاربری با موفقیت ایجاد شد.." },
+      { "ItemAddedSuccess": "اطلاعات با موفیت ذخیره شد." },
+      { "ItemUpdatedSuccess": "اطلاعات با موفقیت ویرایش شد." }
+      { "ItemDeleteSuccess": "اطلاعات با موفقیت حذف شد." }
+    ],
+    "Warning": [
+      { "DeleteConfirmWarning": "آیا مطمعن هستید؟" }
+    ],
+    "Error": [
+      { "LoginFailedError": "ورود به حساب کاربری با خطا مواجه شد." }
+    ],
+    "Info": [
+    ]
+  }
+}
+
+
