@@ -9,7 +9,7 @@ namespace Data.Core.Entities.Location
     {
         [Key]
         public int Id { get; set; }
-        public string Title { get; set; }
+        public string Name { get; set; }
         public string Abbreviation { get; set; }
         public ICollection<State> States { get; set; }
         public Region Region{ get; set; }

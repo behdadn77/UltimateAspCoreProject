@@ -184,7 +184,7 @@ namespace Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
                     Abbreviation = table.Column<string>(nullable: true),
                     RegionId = table.Column<int>(nullable: true)
                 },
@@ -206,7 +206,7 @@ namespace Data.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CountryId = table.Column<int>(nullable: false),
-                    Title = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
                     Code = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -228,7 +228,7 @@ namespace Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StateId = table.Column<int>(nullable: false),
                     Code = table.Column<string>(nullable: true),
-                    Title = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

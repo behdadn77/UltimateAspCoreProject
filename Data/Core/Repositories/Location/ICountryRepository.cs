@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using X.PagedList;
 
 namespace Data.Core.Repositories.Location
 {
@@ -9,5 +10,7 @@ namespace Data.Core.Repositories.Location
     {
         Country GetCountryWithStates(int id);
         Country GetCountryWithCities(int id);
+        IPagedList<Country> GetCountriesWithStates(int pageIndex, int pageSize);
+        IPagedList<Country> GetCountriesWithCities(int pageIndex, int pageSize);
     }
 }

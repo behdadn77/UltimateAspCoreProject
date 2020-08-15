@@ -22,7 +22,7 @@ namespace Data.Core.Entities.Location
 
         public string Code { get; set; }
 
-        public string Title { get; set; }
+        public string Name { get; set; }
 
     }
 }

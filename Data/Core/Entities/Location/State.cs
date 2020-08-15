@@ -16,7 +16,7 @@ namespace Data.Core.Entities.Location
         public Country Country { get; set; }
 
 
-        public string Title { get; set; }
+        public string Name { get; set; }
 
         public string Code { get; set; }
 

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using X.PagedList;
 
 namespace Data.Persitence.Repositories.Location
 {
@@ -16,7 +17,14 @@ namespace Data.Persitence.Repositories.Location
 
         public State GetStateWithCities(int id)
         {
-            return DBContext.States.Include(a => a.Country).SingleOrDefault(a => a.Id == id);
+            return DBContext.States.Include(x => x.Country).OrderBy(x => x.Name)
+                .SingleOrDefault(x => x.Id == id);
+        }
+
+        public IPagedList<State> GetStatesWithCities(int pageIndex, int pageSize = 10)
+        {
+            return DBContext.States.Include(x => x.Cities).OrderBy(x => x.Name).
+                ToPagedList(pageIndex, pageSize);
         }
 
         public DBContext DBContext
@@ -24,4 +32,5 @@ namespace Data.Persitence.Repositories.Location
             get { return Context as DBContext; }
         }
     }
+
 }
