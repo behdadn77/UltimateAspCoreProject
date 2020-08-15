@@ -7,6 +7,6 @@ namespace Data.Core.Repositories.Location
 {
     public interface IStateRepository :IRepository<State>
     {
-        State GetStateWithCities(int id)
+        State GetStateWithCities(int id);
     }
 }
