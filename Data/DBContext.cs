@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    public class DBContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationContext : IdentityDbContext<ApplicationUser>
     {
-        public DBContext(DbContextOptions<DBContext> options)
+        public ApplicationContext(DbContextOptions<ApplicationContext> options)
            : base(options)
         {
         }

@@ -27,7 +27,7 @@ namespace UltimateAspCoreProject
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<DBContext>(options =>
+            services.AddDbContext<ApplicationContext>(options =>
                  options.UseSqlServer(
                      Configuration.GetConnectionString("DBContextConnection")));
         }

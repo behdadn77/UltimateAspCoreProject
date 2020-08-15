@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data.Core
 {
-    interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork : IDisposable
     {
         ICityRepository Cities { get; }
         IStateRepository States { get; }

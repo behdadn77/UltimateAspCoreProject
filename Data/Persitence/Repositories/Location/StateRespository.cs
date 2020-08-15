@@ -17,19 +17,19 @@ namespace Data.Persitence.Repositories.Location
 
         public State GetStateWithCities(int id)
         {
-            return DBContext.States.Include(x => x.Country).OrderBy(x => x.Name)
+            return ApplicationContext.States.Include(x => x.Country).OrderBy(x => x.Name)
                 .SingleOrDefault(x => x.Id == id);
         }
 
         public IPagedList<State> GetStatesWithCities(int pageIndex, int pageSize = 10)
         {
-            return DBContext.States.Include(x => x.Cities).OrderBy(x => x.Name).
+            return ApplicationContext.States.Include(x => x.Cities).OrderBy(x => x.Name).
                 ToPagedList(pageIndex, pageSize);
         }
 
-        public DBContext DBContext
+        public ApplicationContext ApplicationContext
         {
-            get { return Context as DBContext; }
+            get { return Context as ApplicationContext; }
         }
     }
 

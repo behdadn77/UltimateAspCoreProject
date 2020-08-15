@@ -10,9 +10,9 @@ namespace Data.Persistence
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DBContext context;
+        private readonly ApplicationContext context;
 
-        public UnitOfWork(DBContext context)
+        public UnitOfWork(ApplicationContext context)
         {
             this.context = context;
             Cities = new CityRepository(this.context);

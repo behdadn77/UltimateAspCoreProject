@@ -10,13 +10,13 @@ namespace Data.Persitence.Repositories.Location
 {
     public class CityRepository : Repository<City>, ICityRepository
     {
-        public CityRepository(DBContext context) : base(context)
+        public CityRepository(ApplicationContext context) : base(context)
         {
         }
 
-        public DBContext DBContext
+        public ApplicationContext ApplicationContext
         {
-            get { return Context as DBContext; }
+            get { return Context as ApplicationContext; }
         }
     }
 }
