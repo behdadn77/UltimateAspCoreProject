@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Data.Core.Entities.Product
+namespace Entities
 {
-    public class ProductBrand
+    public class ContactUs
     {
     }
 }

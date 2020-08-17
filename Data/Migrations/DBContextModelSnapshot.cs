@@ -19,7 +19,7 @@ namespace Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Data.Core.Entities.ApplicationUser", b =>
+            modelBuilder.Entity("Entities.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -90,7 +90,7 @@ namespace Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Data.Core.Entities.Location.Address", b =>
+            modelBuilder.Entity("Entities.Location.Address", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -102,7 +102,7 @@ namespace Data.Migrations
                     b.ToTable("Addresses");
                 });
 
-            modelBuilder.Entity("Data.Core.Entities.Location.City", b =>
+            modelBuilder.Entity("Entities.Location.City", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -125,7 +125,7 @@ namespace Data.Migrations
                     b.ToTable("Cities");
                 });
 
-            modelBuilder.Entity("Data.Core.Entities.Location.Country", b =>
+            modelBuilder.Entity("Entities.Location.Country", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -148,7 +148,7 @@ namespace Data.Migrations
                     b.ToTable("Countries");
                 });
 
-            modelBuilder.Entity("Data.Core.Entities.Location.Region", b =>
+            modelBuilder.Entity("Entities.Location.Region", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -160,7 +160,7 @@ namespace Data.Migrations
                     b.ToTable("Regions");
                 });
 
-            modelBuilder.Entity("Data.Core.Entities.Location.State", b =>
+            modelBuilder.Entity("Entities.Location.State", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -314,25 +314,25 @@ namespace Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Data.Core.Entities.Location.City", b =>
+            modelBuilder.Entity("Entities.Location.City", b =>
                 {
-                    b.HasOne("Data.Core.Entities.Location.State", "State")
+                    b.HasOne("Entities.Location.State", "State")
                         .WithMany("Cities")
                         .HasForeignKey("StateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Data.Core.Entities.Location.Country", b =>
+            modelBuilder.Entity("Entities.Location.Country", b =>
                 {
-                    b.HasOne("Data.Core.Entities.Location.Region", "Region")
+                    b.HasOne("Entities.Location.Region", "Region")
                         .WithMany()
                         .HasForeignKey("RegionId");
                 });
 
-            modelBuilder.Entity("Data.Core.Entities.Location.State", b =>
+            modelBuilder.Entity("Entities.Location.State", b =>
                 {
-                    b.HasOne("Data.Core.Entities.Location.Country", "Country")
+                    b.HasOne("Entities.Location.Country", "Country")
                         .WithMany("States")
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -350,7 +350,7 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Data.Core.Entities.ApplicationUser", null)
+                    b.HasOne("Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -359,7 +359,7 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Data.Core.Entities.ApplicationUser", null)
+                    b.HasOne("Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -374,7 +374,7 @@ namespace Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Data.Core.Entities.ApplicationUser", null)
+                    b.HasOne("Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -383,7 +383,7 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Data.Core.Entities.ApplicationUser", null)
+                    b.HasOne("Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

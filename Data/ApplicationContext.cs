@@ -1,5 +1,5 @@
-﻿using Data.Core.Entities;
-using Data.Core.Entities.Location;
+﻿using Entities;
+using Entities.Location;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;

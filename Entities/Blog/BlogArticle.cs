@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Data.Core.Entities.Blog
+namespace Entities.Blog
 {
     /// <summary>
     /// کلاس وبلاگ و مقالات

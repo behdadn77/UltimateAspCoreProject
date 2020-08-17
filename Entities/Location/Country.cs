@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Data.Core.Entities.Location
+namespace Entities.Location
 {
     public class Country
     {

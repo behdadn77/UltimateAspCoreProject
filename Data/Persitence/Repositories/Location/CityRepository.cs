@@ -1,4 +1,4 @@
-﻿using Data.Core.Entities.Location;
+﻿using Entities.Location;
 using Data.Core.Repositories.Location;
 using Microsoft.EntityFrameworkCore;
 using System;

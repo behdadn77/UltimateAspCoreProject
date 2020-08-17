@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Data.Core.Entities.Blog
+namespace Entities.Blog
 {
     /// <summary>
     /// کلاس برچسب مطالب

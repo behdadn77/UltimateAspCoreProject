@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Data.Core.Entities.Location
+namespace Entities.Location
 {
     public class Region
     {

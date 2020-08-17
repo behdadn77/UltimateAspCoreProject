@@ -1,4 +1,4 @@
-﻿using Data.Core.Entities.Location;
+﻿using Entities.Location;
 using System;
 using System.Collections.Generic;
 using System.Text;

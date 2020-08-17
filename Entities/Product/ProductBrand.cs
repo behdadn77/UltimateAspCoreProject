@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Data.Core.Entities.Sale
+namespace Entities.Product
 {
-    public class SaleFactor
+    public class ProductBrand
     {
     }
 }
