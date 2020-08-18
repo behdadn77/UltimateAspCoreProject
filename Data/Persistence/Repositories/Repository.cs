@@ -41,7 +41,7 @@ namespace Data.Persitence.Repositories
 
         public IPagedList<TEntity> FindPaged(int pageIndex, int pageSize = 10, Expression<Func<TEntity, bool>> predicate = null)
         {
-            return Context.Set<TEntity>().Where(predicate).ToPagedList(pageIndex, pageSize,);
+            return Context.Set<TEntity>().Where(predicate).ToPagedList(pageIndex, pageSize);
         }
 
         public TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate)
