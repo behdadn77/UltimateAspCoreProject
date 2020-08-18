@@ -6,6 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using X.PagedList;
+using System.Threading.Tasks;
 
 namespace Data.Persitence.Repositories
 {
@@ -17,19 +18,22 @@ namespace Data.Persitence.Repositories
             Context = context;
         }
 
-        public TEntity Get(int id)
+        public virtual TEntity GetById(int id)
         {
-            // Here we are working with a DbContext, not PlutoContext. So we don't have DbSets 
-            // such as Courses or Authors, and we need to use the generic Set() method to access them.
             return Context.Set<TEntity>().Find(id);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public virtual async Task<TEntity> GetByIdAsync(int id)
+        {
+            return await Context.Set<TEntity>().FindAsync(id);
+        }
+
+        public virtual IEnumerable<TEntity> GetAll()
         {
             return Context.Set<TEntity>().ToList();
         }
 
-        public IPagedList<TEntity> GetPaged(int pageIndex, int pageSize = 10)
+        public virtual IPagedList<TEntity> GetPaged(int pageIndex, int pageSize = 10)
         {
             return Context.Set<TEntity>().ToPagedList(pageIndex, pageSize);
         }

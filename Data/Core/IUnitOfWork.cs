@@ -12,5 +12,6 @@ namespace Data.Core
         IStateRepository States { get; }
         ICountryRepository Countries { get; }
         int Save();
+        Task<int> SaveAsync();
     }
 }

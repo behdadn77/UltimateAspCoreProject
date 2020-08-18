@@ -29,6 +29,11 @@ namespace Data.Persistence
             return context.SaveChanges();
         }
 
+        public async Task<int> SaveAsync()
+        {
+            return await context.SaveChangesAsync();
+        }
+
         public void Dispose()
         {
             context.Dispose();
