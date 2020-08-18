@@ -7,6 +7,7 @@ using System.Linq.Expressions;
 using System.Text;
 using X.PagedList;
 using System.Threading.Tasks;
+using Entities.ResultStatus;
 
 namespace Data.Persitence.Repositories
 {
@@ -33,14 +34,14 @@ namespace Data.Persitence.Repositories
             return Context.Set<TEntity>().ToList();
         }
 
-        public virtual IPagedList<TEntity> GetPaged(int pageIndex, int pageSize = 10)
-        {
-            return Context.Set<TEntity>().ToPagedList(pageIndex, pageSize);
-        }
-
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
             return Context.Set<TEntity>().Where(predicate);
+        }
+
+        public IPagedList<TEntity> FindPaged(int pageIndex, int pageSize = 10, Expression<Func<TEntity, bool>> predicate = null)
+        {
+            return Context.Set<TEntity>().Where(predicate).ToPagedList(pageIndex, pageSize,);
         }
 
         public TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate)
