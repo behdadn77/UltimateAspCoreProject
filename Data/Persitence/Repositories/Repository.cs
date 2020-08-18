@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using X.PagedList;
 
 namespace Data.Persitence.Repositories
 {
@@ -38,6 +39,11 @@ namespace Data.Persitence.Repositories
             // I didn't change it because I wanted the code to look like the videos. But feel free to change
             // this on your own.
             return Context.Set<TEntity>().ToList();
+        }
+
+        public IPagedList<TEntity> GetPaged(int pageIndex, int pageSize = 10)
+        {
+            return Context.Set<TEntity>().ToPagedList(pageIndex, pageSize);
         }
 
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
