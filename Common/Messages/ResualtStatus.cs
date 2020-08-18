@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Enumeration;
+using System;
 using System.Collections.Generic;
 using System.Text;
 

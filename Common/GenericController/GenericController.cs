@@ -28,7 +28,7 @@ namespace Common.GenericController
                 case MessageType.Success:
                     TempData["GlobalSuccess"] = Alerts.Success[key];
                     break;
-                case MessageType.Danger:
+                case MessageType.Error:
                     TempData["GlobalWarning"] = Alerts.Warning[key];
                     break;
                 case MessageType.Warning:

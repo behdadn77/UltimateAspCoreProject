@@ -18,7 +18,7 @@ namespace Common.Enumeration
     public enum MessageType
     {
         Success,
-        Danger,
+        Error,
         Warning,
         Info,
     }
