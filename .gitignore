@@ -1,6 +1,7 @@
 #added by meta
 #appsetting
 appsettings.json
+appsettings.Development.json
 
 
 ## Ignore Visual Studio temporary files, build results, and
