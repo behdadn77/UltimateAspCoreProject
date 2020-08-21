@@ -31,7 +31,7 @@ namespace UltimateAspCoreProject
 
             services.AddDbContext<ApplicationContext>(options =>
                  options.UseSqlServer(
-                     Configuration.GetConnectionString("DBContextConnection")));
+                     Configuration.GetConnectionString("ApplicationContextConnection")));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }

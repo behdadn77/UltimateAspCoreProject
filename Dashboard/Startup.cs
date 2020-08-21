@@ -51,7 +51,7 @@ namespace Dashboard
             //(can be separated in IdentityHostingStartup)
             services.AddDbContext<ApplicationContext>(options =>
                   options.UseSqlServer(
-                      Configuration.GetConnectionString("DBContextConnection")));
+                      Configuration.GetConnectionString("ApplicationContextConnection")));
 
             services.AddDefaultIdentity<ApplicationUser>(options =>
             {
