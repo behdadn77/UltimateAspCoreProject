@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Common.DataAnnotation.Social
+namespace DataAnnotation.Social
 {
     public class TelephoneAttribute : ValidationAttribute
     {

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Common.DataAnnotation.Location
+namespace DataAnnotation.Location
 {
-    class StateAttribute
+    class CountryAttribute
     {
     }
 }

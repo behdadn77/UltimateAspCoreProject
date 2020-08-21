@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Common.DataAnnotation.Datetime
+namespace DataAnnotation.Social
 {
-    public class StartDateAttribute
+    class WebsiteAttribute
     {
-
     }
 }

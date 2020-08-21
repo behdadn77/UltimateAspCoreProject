@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Common.DataAnnotation.Personal
+namespace DataAnnotation.Datetime
 {
-    class PasswordAttribute
+    class DateBetweenAttribute
     {
     }
 }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Common.DataAnnotation.Social
+namespace DataAnnotation.Social
 {
     public class EmailAttribute : DataTypeAttribute
     {

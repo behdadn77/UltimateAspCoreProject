@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Common.DataAnnotation.Datetime
+namespace DataAnnotation.Datetime
 {
     class EndDateAttribute
     {
