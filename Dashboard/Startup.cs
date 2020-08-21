@@ -29,10 +29,10 @@ namespace Dashboard
 
             var builder = new ConfigurationBuilder();
             builder.SetBasePath(env.ContentRootPath);
-            builder.AddJsonFile("identitysettings.json", optional: false, reloadOnChange: false);
-            builder.AddJsonFile("emailsettings.json", optional: false, reloadOnChange: false);
+            //builder.AddJsonFile("identitysettings.json", optional: false, reloadOnChange: false);
+            //builder.AddJsonFile("emailsettings.json", optional: false, reloadOnChange: false);
             builder.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-            builder.AddUserSecrets<Program>();
+            //builder.AddUserSecrets<Program>();
             Configuration = builder.Build();
         }
 
