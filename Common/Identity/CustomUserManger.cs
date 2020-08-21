@@ -8,7 +8,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 
-namespace Dashboard.Areas.Identity
+namespace Common.Identity
 {
     public class CustomUserManager : UserManager<ApplicationUser>
     {

@@ -5,17 +5,19 @@ using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Dashboard.Models;
+
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using Dashboard.Classes;
-using Dashboard.Services;
+
+
 using reCAPTCHA.AspNetCore.Attributes;
 using reCAPTCHA.AspNetCore;
+using Entities;
+using Common.Identity;
 
 namespace Dashboard.Areas.Identity.Pages.Account
 {
