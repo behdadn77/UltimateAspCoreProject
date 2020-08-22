@@ -5,6 +5,7 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 
@@ -19,6 +20,12 @@ namespace Common.Identity
             : base(store, optionsAccessor, passwordHasher, userValidators, passwordValidators, keyNormalizer, errors, services, logger)
         {
             PasswordHasher = new CustomPasswordHasher();
+        }
+
+        public async Task<string> GetUserFullNameAsyncAsync(ClaimsPrincipal principal)
+        {
+            var user =await base.GetUserAsync(principal);
+            return $"{user.FirstName} {user.LastName}";
         }
     }
 
