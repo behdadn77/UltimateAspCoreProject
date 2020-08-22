@@ -22,7 +22,7 @@ namespace Common.Identity
             PasswordHasher = new CustomPasswordHasher();
         }
 
-        public async Task<string> GetUserFullNameAsyncAsync(ClaimsPrincipal principal)
+        public async Task<string> GetUserFullNameAsync(ClaimsPrincipal principal)
         {
             var user =await base.GetUserAsync(principal);
             return $"{user.FirstName} {user.LastName}";
