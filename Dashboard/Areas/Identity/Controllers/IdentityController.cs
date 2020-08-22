@@ -44,19 +44,19 @@ namespace Dashboard.Areas.Identity.Controllers
         //}
 
 
-        //[Route("Identity/Account/Register")]
-        //[HttpGet]
-        //public IActionResult RegisterGet()
-        //{
-        //    return Redirect("/Identity/Account/Login");
-        //}
+        [Route("Identity/Account/Register")]
+        [HttpGet]
+        public IActionResult RegisterGet()
+        {
+            return NotFound();
+        }
 
-        //[Route("Identity/Account/Register")]
-        //[HttpPost]
-        //public IActionResult RegisterPost()
-        //{
-        //    return NotFound();
-        //}
+        [Route("Identity/Account/Register")]
+        [HttpPost]
+        public IActionResult RegisterPost()
+        {
+            return NotFound();
+        }
 
     }
 }
