@@ -1,4 +1,9 @@
-﻿<div class="col-md-3 left_col hidden-print">
+﻿@using Common.Identity
+
+@inject CustomUserManager UserManager
+
+
+<div class="col-md-3 left_col hidden-print">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
             <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
@@ -13,7 +18,7 @@
             </div>
             <div class="profile_info">
                 <span>خوش آمدید,</span>
-                <h2>مرتضی کریمی</h2>
+                <h2>@(await UserManager.GetUserFullNameAsyncAsync(this.User))</h2>
             </div>
         </div>
         <!-- /menu profile quick info -->
