@@ -16,6 +16,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{ADBE83C0-C1D7-42A9-9F81-393C09003949}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Document", "Document", "{D802175A-FB94-49C6-B52B-FA9225AD9DF4}"
+	ProjectSection(SolutionItems) = preProject
+		ToDo.txt = ToDo.txt
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{B96E8AC7-E36C-4B76-96EA-EAC9E8EBE26F}"
 EndProject
@@ -25,7 +28,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dashboard", "Dashboard\Dash
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{61B9C3C1-9AF0-4C42-B425-214BF9E68095}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAnnotation", "DataAnnotation\DataAnnotation.csproj", "{57B492AC-0C2F-4E76-8D9C-8C76CFCCDEB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAnnotation", "DataAnnotation\DataAnnotation.csproj", "{57B492AC-0C2F-4E76-8D9C-8C76CFCCDEB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
