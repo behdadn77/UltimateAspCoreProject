@@ -34,6 +34,7 @@ namespace Dashboard.Areas.Identity.Pages.Account
         {
             [Required]
             [EmailAddress]
+            [Display(Name = "آدرس ایمیل")]
             public string Email { get; set; }
         }
 

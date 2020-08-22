@@ -18,6 +18,7 @@ using reCAPTCHA.AspNetCore.Attributes;
 using reCAPTCHA.AspNetCore;
 using Entities;
 using Common.Identity;
+using System.ComponentModel;
 
 namespace Dashboard.Areas.Identity.Pages.Account
 {
@@ -54,13 +55,15 @@ namespace Dashboard.Areas.Identity.Pages.Account
         {
             [Required]
             [EmailAddress]
+            [Display(Name ="آدرس ایمیل")]
             public string Email { get; set; }
 
             [Required]
             [DataType(DataType.Password)] //Change Password validation configs 
+            [Display(Name = "رمز عبور")]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "مرا به خاطر بسپار")]
             public bool RememberMe { get; set; }
         }
 
