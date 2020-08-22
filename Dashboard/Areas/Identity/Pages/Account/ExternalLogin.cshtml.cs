@@ -115,68 +115,11 @@ namespace Dashboard.Areas.Identity.Pages.Account
             }
             else
             {
-                // If the user does not have an account, then ask the user to create an account.
-                ReturnUrl = returnUrl;
-                ProviderDisplayName = info.ProviderDisplayName;
-                if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
+                var user = await _userManager.FindByEmailAsync(info.Principal.FindFirstValue(ClaimTypes.Email));
+                if (user == null)
                 {
-                    var user = new ApplicationUser
-                    {
-                        UserName = info.Principal.FindFirstValue(ClaimTypes.Email),
-                        Email = info.Principal.FindFirstValue(ClaimTypes.Email),
-                    }; //Don't use Input Email if email confirmation is disabled
-
-                    if (info.Principal.HasClaim(c => c.Type == ClaimTypes.GivenName))
-                    {
-                        user.FirstName = info.Principal.FindFirstValue(ClaimTypes.GivenName);
-                    }
-
-                    if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Surname))
-                    {
-                        user.LastName = info.Principal.FindFirstValue(ClaimTypes.Surname);
-                    }
-
-                    user.EmailConfirmed = true; //email confirmation is not required when using the email address provided by external login
-
-                    var res = await _userManager.CreateAsync(user);
-                    if (res.Succeeded)
-                    {
-                        _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
-
-                        //login
-                        var loginInfo = await _signInManager.GetExternalLoginInfoAsync();
-                        if (loginInfo == null)
-                        {
-                            ErrorMessage = "Error loading external login information during confirmation.";
-                            return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
-                        }
-                        else
-                        {
-                            res = await _userManager.AddLoginAsync(user, loginInfo);
-                            if (res.Succeeded)
-                            {
-                                await _signInManager.SignInAsync(user, isPersistent: false, info.LoginProvider);
-
-                                return RedirectToPage("./ExternalLogin", new
-                                {
-                                    ProviderDisplayName,
-                                    ReturnUrl,
-                                });
-
-                                //Input = new InputModel()
-                                //{
-                                //    Email = user.Email,
-                                //    FirstName = user.FirstName,
-                                //    LastName = user.LastName
-                                //};
-                                //return Page();
-                            }
-                        }
-                    }
-                    foreach (var error in res.Errors)
-                    {
-                        ModelState.AddModelError(string.Empty, error.Description);
-                    }
+                    ErrorMessage = "شما در لیست کاربران سایت قرار ندارید";
+                    return RedirectToPage("./Login");
                 }
                 ErrorMessage = "Error loading external login information.";
                 return RedirectToPage("./Login");
