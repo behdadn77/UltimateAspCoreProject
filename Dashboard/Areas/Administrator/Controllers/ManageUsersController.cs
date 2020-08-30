@@ -75,13 +75,13 @@ namespace Dashboard.Areas.Administrator.Controllers
         [HttpPost]
         public async Task<IActionResult> RegisterUser(RegisterUserViewModel model)
         {
-            var user = await userManager.FindByNameAsync(model.Username);
+            var user = await userManager.FindByNameAsync(model.EmailAddress);
             if (user == null)
             {
                 user = new ApplicationUser
                 {
-                    Email = model.Username,
-                    UserName = model.Username,
+                    Email = model.EmailAddress,
+                    UserName = model.EmailAddress,
                     FirstName = model.FirstName,
                     LastName = model.LastName
                 };
