@@ -1,11 +1,18 @@
 ﻿@model ChangePassViewModel
 <div class="rtl">
-    <h1>@Model.Username تعویض پسورد کاربر</h1>
-
     <form asp-action="ChangePass">
-        <input type="hidden" asp-for="Username" />
+        <h1>@Model.EmailAddress تعویض پسورد کاربر</h1>
+        <hr />
+        <input type="hidden" asp-for="EmailAddress" />
         <div class="form-group">
+            <label asp-for="NewPass"></label>
             <input class="form-control" asp-for="NewPass" placeholder="پسورد جدید" />
+            <span asp-validation-for="NewPass" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ConfirmNewPass"></label>
+            <input class="form-control" asp-for="ConfirmNewPass" placeholder="تکرار پسورد" />
+            <span asp-validation-for="ConfirmNewPass" class="text-danger"></span>
         </div>
         <button class="btn btn-warning" style="margin-top:4px;">تعویض</button>
     </form>

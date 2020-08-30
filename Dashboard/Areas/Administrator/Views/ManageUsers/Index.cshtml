@@ -38,7 +38,7 @@
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input role" id="@($"{item.User.UserName}{role.RoleName}Checkbox")" @(role.IsInRole ? "checked" : "")
                                        @(ViewData["defaultAdminUserName"].ToString() == item.User.UserName && role.RoleName == ViewData["defaultAdminRoleName"].ToString() ? "allowEnabling=''" : "allowEnabling='allowEnabling'")
-                                       userName="@item.User.UserName" roleName="@role.RoleName" name="roles" disabled>
+                                       username="@item.User.UserName" roleName="@role.RoleName" name="roles" disabled>
                                 <label class="custom-control-label" for="@($"{item.User.UserName}{role.RoleName}Checkbox")">@role.RoleName</label>
                             </div>
                         }
@@ -46,15 +46,15 @@
                     <td>
                         <div class="row">
                             <form asp-area="Administrator" asp-controller="ManageUsers" asp-action="EditUser" method="get">
-                                <input type="hidden" name="userName" value="@item.User.UserName" />
+                                <input type="hidden" name="username" value="@item.User.UserName" />
                                 <button class="btn btn-warning mr-2">ویرایش کاربر</button>
                             </form>
                             <form asp-area="Administrator" asp-controller="ManageUsers" asp-action="DeleteUser" method="get">
-                                <input type="hidden" name="userName" />
+                                <input type="hidden" name="username"  value="@item.User.UserName"/>
                                 <button class="btn btn-danger mr-2" onclick="return confirm('Are you sure?')">حذف کاربر</button>
                             </form>
                             <form asp-area="Administrator" asp-controller="ManageUsers" asp-action="ChangePass" method="get">
-                                <input type="hidden" name="userUame" />
+                                <input type="hidden" name="username"  value="@item.User.UserName"/>
                                 <button class="btn btn-warning mr-2">تعویض رمز</button>
                             </form>
                         </div>
@@ -94,7 +94,7 @@
         var isInRole = $(this).prop('checked');
 
         $.post('/Administrator/manageUsers/AddRemoveUserRoleOnCheckboxEvent', {
-            userName: $(this).attr('userName'),
+            username: $(this).attr('username'),
             rolename: $(this).attr('roleName'),
             isInRole: isInRole
         }).done(function (res) {

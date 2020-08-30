@@ -75,7 +75,7 @@ namespace Dashboard.Areas.Administrator.Controllers
         [HttpPost]
         public async Task<IActionResult> RegisterUser(RegisterUserViewModel model)
         {
-            var user = await userManager.FindByNameAsync(model.EmailAddress);
+            var user = await userManager.FindByEmailAsync(model.EmailAddress);
             if (user == null)
             {
                 user = new ApplicationUser
@@ -83,7 +83,8 @@ namespace Dashboard.Areas.Administrator.Controllers
                     Email = model.EmailAddress,
                     UserName = model.EmailAddress,
                     FirstName = model.FirstName,
-                    LastName = model.LastName
+                    LastName = model.LastName,
+                    EmailConfirmed = true
                 };
 
                 var status = await userManager.CreateAsync(user, model.Password);
@@ -97,7 +98,7 @@ namespace Dashboard.Areas.Administrator.Controllers
                 TempData["GlobalError"] = "Account already exists!";
             }
             TempData["GlobalSuccess"] = "User registerd successfully";
-            return RedirectToAction("ManageUsers");
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -106,8 +107,8 @@ namespace Dashboard.Areas.Administrator.Controllers
             var user = await userManager.FindByNameAsync(username);
             return View(new EditUserViewModel()
             {
-                CurrentUsername = user.UserName, //as pk
-                Username = user.UserName,
+                CurrentEmailAddress = user.Email,
+                EmailAddress = user.Email,
                 FirstName = user.FirstName,
                 LastName = user.LastName
             });
@@ -116,29 +117,30 @@ namespace Dashboard.Areas.Administrator.Controllers
         [HttpPost]
         public async Task<IActionResult> EditUser(EditUserViewModel model)
         {
-            ApplicationUser user = await userManager.FindByNameAsync(options.Value.AdminUser.EmailAddress);
+            ApplicationUser user = await userManager.FindByEmailAsync(model.CurrentEmailAddress);
             if (user == null)
             {
                 TempData["GlobalError"] = "User doesn't exist.";
-                return RedirectToAction("ManageUsers");
+                return RedirectToAction("Index");
             }
-            if (model.Username != options.Value.AdminUser.EmailAddress && user.UserName == options.Value.AdminUser.EmailAddress)
+            if (model.EmailAddress != options.Value.AdminUser.EmailAddress && user.Email == options.Value.AdminUser.EmailAddress)
             {
                 TempData["GlobalError"] = "Default Admin's Username can not be changed.";
-                return RedirectToAction("ManageUsers");
+                return RedirectToAction("Index");
             }
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
-            user.UserName = model.Username;
-            user.Email = model.Username;
+            user.UserName = model.EmailAddress;
+            user.Email = model.EmailAddress;
+            user.EmailConfirmed = true;
             var result = await userManager.UpdateAsync(user);
             if (!result.Succeeded)
             {
                 TempData["GlobalError"] = $"Updating details was Unsuccessful. {result.Errors.ToString()}";
-                return RedirectToAction("ChangePass");
+                return RedirectToAction("Index");
             }
             TempData["GlobalSuccess"] = "Details updated Successfully.";
-            return RedirectToAction("ManageUsers");
+            return RedirectToAction("Index");
 
         }
 
@@ -147,14 +149,14 @@ namespace Dashboard.Areas.Administrator.Controllers
         {
             return View(new ChangePassViewModel()
             {
-                Username = username
+                EmailAddress = username
             });
         }
 
         [HttpPost]
         public async Task<IActionResult> ChangePass(ChangePassViewModel model)
         {
-            ApplicationUser user = await userManager.FindByNameAsync(model.Username);
+            ApplicationUser user = await userManager.FindByNameAsync(model.EmailAddress);
             if (user == null)
             {
                 TempData["GlobalError"] = "User doesn't exist.";
@@ -168,7 +170,7 @@ namespace Dashboard.Areas.Administrator.Controllers
                 return RedirectToAction("ChangePass");
             }
             TempData["GlobalSuccess"] = "Password changed Successfully.";
-            return RedirectToAction("ManageUsers");
+            return RedirectToAction("Index");
 
         }
 
@@ -194,14 +196,14 @@ namespace Dashboard.Areas.Administrator.Controllers
                 return RedirectToAction("ManageUsers");
             }
             TempData["GlobalError"] = "User not found.";
-            return RedirectToAction("ManageUsers");
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
-        public async Task<IActionResult> ChangeUserRoles(string userName)
+        public async Task<IActionResult> ChangeUserRoles(string username)
         {
 
-            var user = await userManager.FindByNameAsync(userName);
+            var user = await userManager.FindByNameAsync(username);
             if (user != null)
             {
                 UserRolesViewModel userRoles = new UserRolesViewModel()
@@ -222,9 +224,9 @@ namespace Dashboard.Areas.Administrator.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ChangeUserRoles(string userName, List<string> roles)
+        public async Task<IActionResult> ChangeUserRoles(string username, List<string> roles)
         {
-            var user = await userManager.FindByNameAsync(userName);
+            var user = await userManager.FindByNameAsync(username);
             if (user != null)
             {
                 foreach (var role in roles) //note: Don't use lambda ForEach
@@ -236,7 +238,7 @@ namespace Dashboard.Areas.Administrator.Controllers
                     catch (Exception)
                     {
                         TempData["GlobalError"] = $"Failed to assign user to {role}";
-                        return RedirectToAction("ChangeUserRoles", routeValues: new { userName });
+                        return RedirectToAction("ChangeUserRoles", routeValues: new { username });
                     }
                 }
                 var allRoles = roleManager.Roles.Select(x => x.Name).ToList();
@@ -255,7 +257,7 @@ namespace Dashboard.Areas.Administrator.Controllers
                         catch (Exception)
                         {
                             TempData["GlobalError"] = $"Failed to remove user from {role}";
-                            return RedirectToAction("ChangeUserRoles", routeValues: new { userName });
+                            return RedirectToAction("ChangeUserRoles", routeValues: new { username });
                         }
                     }
                 }
@@ -263,15 +265,15 @@ namespace Dashboard.Areas.Administrator.Controllers
             else
             {
                 TempData["GlobalError"] = "User Doesn't exist";
-                return RedirectToAction("ChangeUserRoles", routeValues: new { userName });
+                return RedirectToAction("ChangeUserRoles", routeValues: new { username });
             }
             return RedirectToAction("Index");
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddRemoveUserRoleOnCheckboxEvent(string userName, string roleName, bool isInRole)
+        public async Task<IActionResult> AddRemoveUserRoleOnCheckboxEvent(string username, string roleName, bool isInRole)
         {
-            var user = await userManager.FindByNameAsync(userName);
+            var user = await userManager.FindByNameAsync(username);
             if (user != null)
             {
                 if (isInRole)
@@ -287,7 +289,7 @@ namespace Dashboard.Areas.Administrator.Controllers
                 }
                 else
                 {
-                    if (userName == options.Value.AdminUser.EmailAddress && roleName == "Administrators") //default site admin cannot be demoted
+                    if (username == options.Value.AdminUser.EmailAddress && roleName == "Administrators") //default site admin cannot be demoted
                     {
                         return Json("default site admin cannot be demoted");
                     }

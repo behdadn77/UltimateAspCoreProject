@@ -8,6 +8,7 @@ namespace ViewModels.Administrator
     public class ChangePassViewModel
     {
         public string NewPass { get; set; }
-        public string  Username { get; set; }
+        public string ConfirmNewPass { get; set; }
+        public string  EmailAddress { get; set; }
     }
 }

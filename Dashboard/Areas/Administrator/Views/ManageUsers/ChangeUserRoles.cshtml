@@ -2,7 +2,7 @@
 <h1>ChangeUserRoles</h1>
 
 <form class="form-group" asp-area="Administrator" asp-controller="ManageUsers" asp-action="ChangeUserRoles">
-    <input type="hidden" name="userName" value="User.UserName" />
+    <input type="hidden" name="username" value="User.UserName" />
     @foreach (var item in Model.Roles)
     {
         <div class="form-check">
