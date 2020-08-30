@@ -1,0 +1,108 @@
+﻿@model List<UserRolesViewModel>
+
+<div class="rtl">
+    <h1>مدیریت کابران</h1>
+    <div class="row">
+        <form asp-area="SiteAdmin" asp-controller="ManageUsers" asp-action="Index" method="get">
+            <input name="query" placeholder="Search user" value="@ViewData["query"]" />
+            <button class="btn btn-primary">Search</button>
+        </form>
+        <a class="btn btn-primary" asp-area="SiteAdmin" asp-controller="ManageUsers" asp-action="RegisterUser">Register new User</a>
+    </div>
+    <div class="row mb-5">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td>نام کاربری</td>
+                    <td>نام</td>
+                    <td>نام خانوادگی</td>
+                    <td>
+                        <label>Roles</label>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="enableRolesCheckbox">
+                            <label class="custom-control-label" for="enableRolesCheckbox">Enable Editing</label>
+                        </div>
+                    </td>
+                    <td></td>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@($"{item.User.UserName}")</td>
+                    <td>@($"{item.User.FirstName}")</td>
+                    <td>@($"{item.User.LastName}")</td>
+                    <td>
+                        @foreach (var role in item.Roles)
+                        {
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input role" id="@($"{item.User.UserName}{role.RoleName}Checkbox")" @(role.IsInRole ? "checked" : "")
+                                       @(ViewData["defaultAdminUserName"].ToString() == item.User.UserName && role.RoleName == ViewData["defaultAdminRoleName"].ToString() ? "allowEnabling=''" : "allowEnabling='allowEnabling'")
+                                       userName="@item.User.UserName" roleName="@role.RoleName" name="roles" disabled>
+                                <label class="custom-control-label" for="@($"{item.User.UserName}{role.RoleName}Checkbox")">@role.RoleName</label>
+                            </div>
+                        }
+                    </td>
+                    <td>
+                        <div class="row">
+                            <form asp-area="SiteAdmin" asp-controller="ManageUsers" asp-action="EditUser" method="get">
+                                <input type="hidden" name="userName" value="@item.User.UserName" />
+                                <button class="btn btn-warning mr-2">ویرایش کاربر</button>
+                            </form>
+                            <form asp-area="SiteAdmin" asp-controller="ManageUsers" asp-action="DeleteUser" method="get">
+                                <input type="hidden" name="userName" />
+                                <button class="btn btn-danger mr-2" onclick="return confirm('Are you sure?')">حذف کاربر</button>
+                            </form>
+                            <form asp-area="SiteAdmin" asp-controller="ManageUsers" asp-action="ChangePass" method="get">
+                                <input type="hidden" name="userUame" />
+                                <button class="btn btn-warning mr-2">تعویض رمز</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+
+    <div class="pull-right">
+        <nav aria-label="...">
+            <ul class="pagination">
+                @for (int i = 1; i <= (double)ViewData["totalPages"]; i++)
+                {
+                    <li class="@(i == (int)ViewData["pageNum"]?"page-item active":"page-item")">
+                        <a class="page-link" href="/SiteAdmin/ManageUsers/Index/?query=@ViewData["query"]&page=@i">@i</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+
+    </div>
+
+</div>
+
+<script>
+    $('td').on('change', '#enableRolesCheckbox', function () {
+        var elements = $('td').find('.role')
+        elements.each(function () {
+            //if ($(this).attr('allowEnabling') === "allowEnabling") {
+            //    $(this).prop('disabled', !($('td').find('#enableRolesCheckbox').prop('checked')))
+            //}
+            $(this).prop('disabled', !($('td').find('#enableRolesCheckbox').prop('checked')))
+        })
+    })
+    $('td').on('change', '.role', function () {
+        var isInRole = $(this).prop('checked');
+
+        $.post('/SiteAdmin/manageUsers/AddRemoveUserRoleOnCheckboxEvent', {
+            userName: $(this).attr('userName'),
+            rolename: $(this).attr('roleName'),
+            isInRole: isInRole
+        }).done(function (res) {
+            if (res !== "success") {
+                alert(res);
+                //$(this).prop('checked', !($(this).prop('checked')))
+                location.reload();
+            }
+        })
+    })
+</script>
