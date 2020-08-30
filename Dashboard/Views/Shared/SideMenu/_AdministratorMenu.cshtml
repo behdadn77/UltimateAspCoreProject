@@ -1,0 +1,10 @@
+﻿@if (User.Identity.IsAuthenticated && User.IsInRole("Administrators"))
+{
+    <li>
+        <a><i class="fa fa-home"></i> ادمین <span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+            <li><a asp-area="Administrator" asp-controller="ManageUsers" asp-action="Index">مدیریت کاربران</a></li>
+        </ul>
+    </li>
+}
+
