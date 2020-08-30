@@ -3,11 +3,11 @@
 <div class="rtl">
     <h1>مدیریت کابران</h1>
     <div class="row">
-        <form asp-area="SiteAdmin" asp-controller="ManageUsers" asp-action="Index" method="get">
+        <form asp-area="Administrator" asp-controller="ManageUsers" asp-action="Index" method="get">
             <input name="query" placeholder="Search user" value="@ViewData["query"]" />
             <button class="btn btn-primary">Search</button>
         </form>
-        <a class="btn btn-primary" asp-area="SiteAdmin" asp-controller="ManageUsers" asp-action="RegisterUser">Register new User</a>
+        <a class="btn btn-primary" asp-area="Administrator" asp-controller="ManageUsers" asp-action="RegisterUser">Register new User</a>
     </div>
     <div class="row mb-5">
         <table class="table table-bordered">
@@ -45,15 +45,15 @@
                     </td>
                     <td>
                         <div class="row">
-                            <form asp-area="SiteAdmin" asp-controller="ManageUsers" asp-action="EditUser" method="get">
+                            <form asp-area="Administrator" asp-controller="ManageUsers" asp-action="EditUser" method="get">
                                 <input type="hidden" name="userName" value="@item.User.UserName" />
                                 <button class="btn btn-warning mr-2">ویرایش کاربر</button>
                             </form>
-                            <form asp-area="SiteAdmin" asp-controller="ManageUsers" asp-action="DeleteUser" method="get">
+                            <form asp-area="Administrator" asp-controller="ManageUsers" asp-action="DeleteUser" method="get">
                                 <input type="hidden" name="userName" />
                                 <button class="btn btn-danger mr-2" onclick="return confirm('Are you sure?')">حذف کاربر</button>
                             </form>
-                            <form asp-area="SiteAdmin" asp-controller="ManageUsers" asp-action="ChangePass" method="get">
+                            <form asp-area="Administrator" asp-controller="ManageUsers" asp-action="ChangePass" method="get">
                                 <input type="hidden" name="userUame" />
                                 <button class="btn btn-warning mr-2">تعویض رمز</button>
                             </form>
@@ -70,7 +70,7 @@
                 @for (int i = 1; i <= (double)ViewData["totalPages"]; i++)
                 {
                     <li class="@(i == (int)ViewData["pageNum"]?"page-item active":"page-item")">
-                        <a class="page-link" href="/SiteAdmin/ManageUsers/Index/?query=@ViewData["query"]&page=@i">@i</a>
+                        <a class="page-link" href="/Administrator/ManageUsers/Index/?query=@ViewData["query"]&page=@i">@i</a>
                     </li>
                 }
             </ul>
@@ -93,7 +93,7 @@
     $('td').on('change', '.role', function () {
         var isInRole = $(this).prop('checked');
 
-        $.post('/SiteAdmin/manageUsers/AddRemoveUserRoleOnCheckboxEvent', {
+        $.post('/Administrator/manageUsers/AddRemoveUserRoleOnCheckboxEvent', {
             userName: $(this).attr('userName'),
             rolename: $(this).attr('roleName'),
             isInRole: isInRole
