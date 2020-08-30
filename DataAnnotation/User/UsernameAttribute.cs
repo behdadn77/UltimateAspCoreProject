@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataAnnotation.Personal
+namespace DataAnnotation.User
 {
     class UsernameAttribute
     {

@@ -6,14 +6,14 @@ using System.Text.RegularExpressions;
 
 namespace DataAnnotation.Social
 {
-    public class EmailAttribute : DataTypeAttribute
+    public class EmailAddressAttribute : DataTypeAttribute
     {
 
         private const DataType dataType = DataType.EmailAddress;
         private readonly bool isRequired;
         private Regex Format = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
 
-        public EmailAttribute(bool isRequired = false) : base(dataType)
+        public EmailAddressAttribute(bool isRequired = false) : base(dataType)
         {
             this.isRequired = isRequired;
         }
