@@ -160,14 +160,14 @@ namespace Dashboard.Areas.Administrator.Controllers
             if (user == null)
             {
                 TempData["GlobalError"] = "User doesn't exist.";
-                return RedirectToAction("ManageUsers");
+                return RedirectToAction("Index");
             }
             user.PasswordHash = userManager.PasswordHasher.HashPassword(user, model.NewPass);
             var result = await userManager.UpdateAsync(user);
             if (!result.Succeeded)
             {
                 TempData["GlobalError"] = $"Changing password was Unsuccessful.  {result.Errors.ToString()}";
-                return RedirectToAction("ChangePass");
+                return RedirectToAction("Index");
             }
             TempData["GlobalSuccess"] = "Password changed Successfully.";
             return RedirectToAction("Index");
