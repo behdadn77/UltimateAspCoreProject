@@ -12,9 +12,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using ViewModels.Administrator;
 
-namespace Dashboard.Areas.SiteAdmin.Controllers
+namespace Dashboard.Areas.Administrator.Controllers
 {
-    [Authorize("SiteAdminPolicy")]
+    [Authorize("AdministratorPolicy")]
     [Area("Administrator")]
     [Route("Administrator/[controller]/[action]")]
     public class ManageUsersController : Controller
@@ -39,7 +39,7 @@ namespace Dashboard.Areas.SiteAdmin.Controllers
         public async Task<IActionResult> Index(int page = 1, int pageSize = 10, string query = "")
         {
             ViewData["defaultAdminUserName"] = options.Value.AdminUser.EmailAddress;
-            ViewData["defaultAdminRoleName"] = "SiteAdmins";
+            ViewData["defaultAdminRoleName"] = "Administrators";
 
             query = query ?? "";
             List<UserRolesViewModel> userRolesList = new List<UserRolesViewModel>();
@@ -242,7 +242,7 @@ namespace Dashboard.Areas.SiteAdmin.Controllers
                 var allRoles = roleManager.Roles.Select(x => x.Name).ToList();
                 foreach (var role in allRoles.Except(roles))
                 {
-                    if (user.UserName == options.Value.AdminUser.EmailAddress && role == "SiteAdmins")
+                    if (user.UserName == options.Value.AdminUser.EmailAddress && role == "Administrators")
                     {
                         TempData["GlobalError"] = "default site admin cannot be demoted";
                     }
@@ -287,7 +287,7 @@ namespace Dashboard.Areas.SiteAdmin.Controllers
                 }
                 else
                 {
-                    if (userName == options.Value.AdminUser.EmailAddress && roleName == "SiteAdmins") //default site admin cannot be demoted
+                    if (userName == options.Value.AdminUser.EmailAddress && roleName == "Administrators") //default site admin cannot be demoted
                     {
                         return Json("default site admin cannot be demoted");
                     }

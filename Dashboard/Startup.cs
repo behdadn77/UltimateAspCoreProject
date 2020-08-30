@@ -90,7 +90,7 @@ namespace Dashboard
 
             services.AddAuthorization(x =>
             {
-                x.AddPolicy("SiteAdminPolicy", y => y.RequireRole("SiteAdmins"));
+                x.AddPolicy("AdministratorPolicy", y => y.RequireRole("Administrators"));
                 x.AddPolicy("ContentManagerPolicy", y => y.RequireRole("ContentManagers"));
             });
 

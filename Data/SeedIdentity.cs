@@ -16,7 +16,7 @@ namespace Data
             var userManager = serviceProvider.GetRequiredService<CustomUserManager>();
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-            string[] roles = new string[] { "SiteAdmins", "ContentManagers" };
+            string[] roles = new string[] { "Administrators", "ContentManagers" };
             foreach (var item in roles)
             {
                 if (await roleManager.RoleExistsAsync(item) == false)
@@ -42,7 +42,7 @@ namespace Data
                 var status = await userManager.CreateAsync(user, identityProperties.AdminUser.Password);
                 if (status.Succeeded == true)
                 {
-                    await userManager.AddToRoleAsync(user, "SiteAdmins");
+                    await userManager.AddToRoleAsync(user, "Administrators");
                 }
             }
         }
