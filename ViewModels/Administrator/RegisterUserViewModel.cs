@@ -1,5 +1,4 @@
-﻿using DataAnnotation.Social;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,12 +11,12 @@ namespace ViewModels.Administrator
         [DataAnnotation.Social.EmailAddress(isRequired: true)]
         public string EmailAddress { get; set; }
 
-        [Required]
+        [DataAnnotation.User.Password(isRequired: true)]
         public string Password { get; set; }
 
-        [Required]
-        [Compare("Password")]
+        [DataAnnotation.User.ConfirmPassword("Password")]
         public string ConfirmPassword { get; set; }
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
     }
