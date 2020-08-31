@@ -35,6 +35,7 @@ namespace Data
                     NormalizedEmail = identityProperties.AdminUser.EmailAddress.ToUpper(),
                     UserName = identityProperties.AdminUser.EmailAddress,
                     NormalizedUserName = identityProperties.AdminUser.EmailAddress.ToUpper(), //IMPORTENT USERNAME MUST BE SAME AS EMAIL ADDRESS OTHERWISE LOGIN FAILES
+                    FirstName="Admin",
                     EmailConfirmed = true,
                 };
 
