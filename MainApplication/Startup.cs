@@ -113,7 +113,7 @@ namespace UltimateAspCoreProject
                 options.LoginPath = $"/Identity/Account/Login";
                 options.LogoutPath = $"/Identity/Account/Logout";
                 options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
-
+                options.Cookie.Name = ".AspNetCore.Identity.Application.Main";
                 //options.Cookie.HttpOnly = true;
                 //options.ExpireTimeSpan = TimeSpan.FromDays(500);
                 //options.SlidingExpiration = true;
