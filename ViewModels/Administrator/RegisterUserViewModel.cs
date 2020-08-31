@@ -8,6 +8,9 @@ namespace ViewModels.Administrator
 {
     public class RegisterUserViewModel
     {
+        [Display(Name = "آدرس ایمیل")]
+        [Required(ErrorMessage = "آدرس ایمیل را وارد کنید")]
+        [EmailAddress(ErrorMessage = "فرمت آدرس ایمیل صحیح نمیباشد")]
         public string EmailAddress { get; set; }
 
         [Display(Name = "رمز عبور")]
