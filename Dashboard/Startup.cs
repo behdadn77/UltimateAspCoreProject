@@ -111,7 +111,7 @@ namespace Dashboard
                 options.LoginPath = $"/Identity/Account/Login";
                 options.LogoutPath = $"/Identity/Account/Logout";
                 options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
-
+                options.Cookie.Name = "DashboardCookie";
                 //options.Cookie.HttpOnly = true;
                 //options.ExpireTimeSpan = TimeSpan.FromDays(500);
                 //options.SlidingExpiration = true;
