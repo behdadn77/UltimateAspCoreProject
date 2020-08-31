@@ -1,6 +1,5 @@
 
-> change cookie for identity
-https://stackoverflow.com/questions/30999190/using-asp-net-identity-on-multiple-web-applications
+
 
 > manage blog
 > shop
