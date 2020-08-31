@@ -54,25 +54,33 @@ namespace Dashboard.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Display(Name = "نام")]
+            [Required(ErrorMessage = "نام را وارد کنید")]
+            [StringLength(15, ErrorMessage = " نام باید حداقل" + " {2}" + "و حداکثر" + "{1}" + "کارکتر باشد", MinimumLength = 2)]
             public string FirstName { get; set; }
 
             [Display(Name = "نام خانوادگی")]
+            [Required(ErrorMessage = "نام خانوادگی را وارد کنید")]
+            [StringLength(15, ErrorMessage = " نام خانوادگی باید حداقل" + " {2}" + "و حداکثر" + "{1}" + "کارکتر باشد", MinimumLength = 2)]
             public string LastName { get; set; }
 
-            [Required]
-            [EmailAddress]
-            [Display(Name = "Email")]
+            [Display(Name = "آدرس ایمیل")]
+            [Required(ErrorMessage = "آدرس ایمیل را وارد کنید")]
+            [EmailAddress(ErrorMessage = "فرمت آدرس ایمیل صحیح نمیباشد")]
             public string Email { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Display(Name = "رمز عبور")]
+            [Required(ErrorMessage = "رمز عبور را وارد کنید")]
+            [StringLength(30, ErrorMessage = " رمز عبور باید حداقل" + " {2}" + "و حداکثر" + "{1}" + "کارکتر باشد", MinimumLength = 8)]
+            [RegularExpression(
+           "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^\\da-zA-Z]).{1,}$",
+           ErrorMessage = "رمز عبور باید شامل حداقل یک حرف بزرگ، یک حرف کوچک، یک رقم و یک کارکتر ویژه (مانند !@#$%^&*) باشد")]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
             public string Password { get; set; }
 
+            [Display(Name = "تکرار رمز عبور")]
+            [Required(ErrorMessage = "تکرار رمز عبور را وارد کنید")]
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Compare("Password", ErrorMessage = "رمز عبور و تکرار آن یکسان نمیباشد")]
             public string ConfirmPassword { get; set; }
         }
 

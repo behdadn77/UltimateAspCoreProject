@@ -38,11 +38,11 @@ namespace Dashboard
             //static configs
             //builder = new ConfigurationBuilder();
             //builder.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true); 
-            StaticConfiguration = builder.Build();
+            //StaticConfiguration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
-        public static IConfiguration StaticConfiguration { get; private set; }
+        //public static IConfiguration StaticConfiguration { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -64,16 +64,17 @@ namespace Dashboard
                 options.SignIn.RequireConfirmedAccount = false;
 
                 // Password configurations note: must change DataValidations for ViewModels
-                options.Password.RequireDigit = false;
-                options.Password.RequiredLength = 0;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false;
-                options.Password.RequireLowercase = false;
-                options.Password.RequiredLength.
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequiredUniqueChars = 0;
 
                 options.User.RequireUniqueEmail = true;
                 options.SignIn.RequireConfirmedAccount = true;
 
+                //Lockout settings.
                 options.Lockout.AllowedForNewUsers = true;
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
                 options.Lockout.MaxFailedAccessAttempts = 5;

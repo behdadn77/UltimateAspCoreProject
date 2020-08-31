@@ -30,18 +30,23 @@ namespace Dashboard.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
+            [Display(Name = "آدرس ایمیل")]
+            [Required(ErrorMessage = "آدرس ایمیل را وارد کنید")]
+            [EmailAddress(ErrorMessage = "فرمت آدرس ایمیل صحیح نمیباشد")]
             public string Email { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
-            [DataType(DataType.Password)]
+            [Display(Name = "رمز عبور")]
+            [Required(ErrorMessage = "رمز عبور را وارد کنید")]
+            [StringLength(30, ErrorMessage = " رمز عبور باید حداقل" + " {2}" + "و حداکثر" + "{1}" + "کارکتر باشد", MinimumLength = 8)]
+            [RegularExpression(
+            "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^\\da-zA-Z]).{1,}$",
+            ErrorMessage = "رمز عبور باید شامل حداقل یک حرف بزرگ، یک حرف کوچک، یک رقم و یک کارکتر ویژه (مانند !@#$%^&*) باشد")]
             public string Password { get; set; }
 
+            [Display(Name = "تکرار رمز عبور")]
+            [Required(ErrorMessage = "تکرار رمز عبور را وارد کنید")]
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Compare("Password", ErrorMessage = "رمز عبور و تکرار آن یکسان نمیباشد")]
             public string ConfirmPassword { get; set; }
 
             public string Code { get; set; }
