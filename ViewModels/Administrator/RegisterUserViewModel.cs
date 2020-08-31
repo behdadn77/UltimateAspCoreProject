@@ -30,12 +30,12 @@ namespace ViewModels.Administrator
 
         [Display(Name = "نام")]
         [Required(ErrorMessage = "نام را وارد کنید")]
-        [StringLength(255, ErrorMessage = " نام باید حداقل" + " {2}" + "و حداکثر" + "{1}" + "کارکتر باشد", MinimumLength = 2)]
+        [StringLength(15, ErrorMessage = " نام باید حداقل" + " {2}" + "و حداکثر" + "{1}" + "کارکتر باشد", MinimumLength = 2)]
         public string FirstName { get; set; }
 
         [Display(Name = "نام خانوادگی")]
         [Required(ErrorMessage = "نام خانوادگی را وارد کنید")]
-        [StringLength(255, ErrorMessage = " نام خانوادگی باید حداقل" + " {2}" + "و حداکثر" + "{1}" + "کارکتر باشد", MinimumLength = 2)]
+        [StringLength(15, ErrorMessage = " نام خانوادگی باید حداقل" + " {2}" + "و حداکثر" + "{1}" + "کارکتر باشد", MinimumLength = 2)]
         public string LastName { get; set; }
     }
 }
