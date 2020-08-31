@@ -60,6 +60,8 @@ namespace UltimateAspCoreProject
                   options.UseSqlServer(
                       Configuration.GetConnectionString("ApplicationContextConnection")));
 
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             services.AddDefaultIdentity<ApplicationUser>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = false;

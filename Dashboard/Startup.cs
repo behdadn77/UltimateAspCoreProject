@@ -18,6 +18,7 @@ using Common.Email;
 using Common.Identity;
 using Entities;
 using Dashboard.Areas.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Dashboard
 {
@@ -143,6 +144,7 @@ namespace Dashboard
             app.UseRouting();
 
             app.UseAuthentication(); //enabling Identity
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
