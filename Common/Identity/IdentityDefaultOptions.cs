@@ -8,6 +8,7 @@ namespace Common.Identity
     public class IdentityDefaultOptions
     {
         public AdminUser AdminUser { get; set; }
+        public PasswordRequirements PasswordRequirements { get; set; }
     }
     public class AdminUser
     {

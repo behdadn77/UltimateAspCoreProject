@@ -34,9 +34,15 @@ namespace Dashboard
             builder.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
             //builder.AddUserSecrets<Program>();
             Configuration = builder.Build();
+
+            //static configs
+            //builder = new ConfigurationBuilder();
+            //builder.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true); 
+            StaticConfiguration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
+        public static IConfiguration StaticConfiguration { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -63,6 +69,7 @@ namespace Dashboard
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireLowercase = false;
+                options.Password.RequiredLength.
 
                 options.User.RequireUniqueEmail = true;
                 options.SignIn.RequireConfirmedAccount = true;
