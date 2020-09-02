@@ -84,6 +84,7 @@ namespace UltimateAspCoreProject.Areas.Dashboard.Controllers
                     UserName = model.EmailAddress,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
+                    PhoneNumber=model.PhoneNum,
                     EmailConfirmed = true
                 };
 
@@ -110,7 +111,8 @@ namespace UltimateAspCoreProject.Areas.Dashboard.Controllers
                 CurrentEmailAddress = user.Email,
                 EmailAddress = user.Email,
                 FirstName = user.FirstName,
-                LastName = user.LastName
+                LastName = user.LastName,
+                PhoneNum=user.PhoneNumber
             });
         }
 
@@ -132,6 +134,7 @@ namespace UltimateAspCoreProject.Areas.Dashboard.Controllers
             user.LastName = model.LastName;
             user.UserName = model.EmailAddress;
             user.Email = model.EmailAddress;
+            user.PhoneNumber = model.PhoneNum;
             user.EmailConfirmed = true;
             var result = await userManager.UpdateAsync(user);
             if (!result.Succeeded)

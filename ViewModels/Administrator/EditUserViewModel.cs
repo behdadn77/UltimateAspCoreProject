@@ -26,5 +26,9 @@ namespace ViewModels.Administrator
         [Required(ErrorMessage = "نام خانوادگی را وارد کنید")]
         [StringLength(15, ErrorMessage = " نام خانوادگی باید حداقل" + " {2}" + "و حداکثر" + "{1}" + "کارکتر باشد", MinimumLength = 2)]
         public string LastName { get; set; }
+
+        [DataAnnotation.Social.Phone]
+        [Display(Name = "شماره تلفن")]
+        public string PhoneNum { get; set; }
     }
 }
