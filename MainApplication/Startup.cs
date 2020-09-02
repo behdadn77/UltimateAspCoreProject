@@ -75,7 +75,6 @@ namespace UltimateAspCoreProject
                 options.Password.RequiredUniqueChars = 0;
 
                 options.User.RequireUniqueEmail = true;
-                options.SignIn.RequireConfirmedAccount = true;
 
                 //Lockout settings.
                 options.Lockout.AllowedForNewUsers = true;
