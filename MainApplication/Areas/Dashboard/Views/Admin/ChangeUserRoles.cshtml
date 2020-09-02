@@ -1,7 +1,7 @@
 ﻿@model UserRolesViewModel
 <h1>ChangeUserRoles</h1>
 
-<form class="form-group" asp-area="Administrator" asp-controller="ManageUsers" asp-action="ChangeUserRoles">
+<form class="form-group" asp-area="Dashboard" asp-controller="Admin" asp-action="ChangeUserRoles">
     <input type="hidden" name="username" value="User.UserName" />
     @foreach (var item in Model.Roles)
     {
