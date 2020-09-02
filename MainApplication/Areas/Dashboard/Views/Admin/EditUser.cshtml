@@ -1,0 +1,26 @@
+﻿@model EditUserViewModel
+<div class="">
+    <form asp-action="EditUser" method="post">
+        <h1>@Model.CurrentEmailAddress ویرایش کاربر</h1>
+        <hr />
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input type="hidden" asp-for="CurrentEmailAddress" />
+        <div class="form-group">
+            <label asp-for="EmailAddress"></label>
+            <input class="form-control" asp-for="EmailAddress" placeholder="آدرس ایمیل" />
+            <span asp-validation-for="EmailAddress" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="FirstName"></label>
+            <input class="form-control" asp-for="FirstName" placeholder="نام" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="LastName"></label>
+            <input class="form-control" asp-for="LastName" placeholder="نام خانوادگی" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+        <button class="btn btn-warning" style="margin-top:4px;">ویرایش</button>
+
+    </form>
+</div>

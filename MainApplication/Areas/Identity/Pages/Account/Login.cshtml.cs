@@ -15,7 +15,6 @@ using Microsoft.Extensions.Logging;
 using reCAPTCHA.AspNetCore.Attributes;
 using reCAPTCHA.AspNetCore;
 using Entities;
-using Common.Identity;
 
 namespace UltimateAspCoreProject.Areas.Identity.Pages.Account
 {
@@ -50,15 +49,17 @@ namespace UltimateAspCoreProject.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
+            [Display(Name = "آدرس ایمیل")]
+            [Required(ErrorMessage = "آدرس ایمیل را وارد کنید")]
+            [EmailAddress(ErrorMessage = "فرمت آدرس ایمیل صحیح نمیباشد")]
             public string Email { get; set; }
 
-            [Required]
+            [Display(Name = "رمز عبور")]
+            [Required(ErrorMessage = "رمز عبور را وارد کنید")]
             [DataType(DataType.Password)] //Change Password validation configs 
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "مرا به خاطر بسپار")]
             public bool RememberMe { get; set; }
         }
 

@@ -102,7 +102,7 @@ namespace UltimateAspCoreProject
             services.AddAuthorization(x =>
             {
                 x.AddPolicy("AdministratorPolicy", y => y.RequireRole("Administrators"));
-                x.AddPolicy("ContentManagerPolicy", y => y.RequireRole("ContentManagers"));
+                x.AddPolicy("DashboardPolicy", y => y.RequireRole("Administrators"));
             });
 
             #endregion
@@ -113,7 +113,8 @@ namespace UltimateAspCoreProject
                 options.LoginPath = $"/Identity/Account/Login";
                 options.LogoutPath = $"/Identity/Account/Logout";
                 options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
-                options.Cookie.Name = ".AspNetCore.Identity.Application.Main";
+                //options.Cookie.Name = ".AspNetCore.Identity.Application.Main";
+
                 //options.Cookie.HttpOnly = true;
                 //options.ExpireTimeSpan = TimeSpan.FromDays(500);
                 //options.SlidingExpiration = true;
@@ -160,7 +161,7 @@ namespace UltimateAspCoreProject
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            //SeedIdentity.Initialize(serviceProvider, identityPropertiesOptions.Value).Wait(); //creating roles and admin acc //already used in dashboard
+            SeedIdentity.Initialize(serviceProvider, identityPropertiesOptions.Value).Wait(); //creating roles and admin acc 
         }
     }
 }
