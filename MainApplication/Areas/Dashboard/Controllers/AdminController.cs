@@ -15,8 +15,8 @@ using ViewModels.Administrator;
 namespace UltimateAspCoreProject.Areas.Dashboard.Controllers
 {
     [Authorize("AdministratorPolicy")]
-    [Area("Administrator")]
-    [Route("Administrator/[controller]/[action]")]
+    [Area("Dashboard")]
+    [Route("Dashboard/[controller]/[action]")]
     public class AdminController : Controller
     {
         private readonly ApplicationContext db;
