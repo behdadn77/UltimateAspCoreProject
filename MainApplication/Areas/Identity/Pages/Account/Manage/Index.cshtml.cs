@@ -35,13 +35,17 @@ namespace UltimateAspCoreProject.Areas.Identity.Pages.Account.Manage
         public class InputModel
         {
             [Display(Name = "نام")]
+            //[Required(ErrorMessage = "نام را وارد کنید")]
+            [StringLength(15, ErrorMessage = " نام باید حداقل" + " {2}" + "و حداکثر" + "{1}" + "کارکتر باشد", MinimumLength = 2)]
             public string FirstName { get; set; }
 
             [Display(Name = "نام خانوادگی")]
+            //[Required(ErrorMessage = "نام خانوادگی را وارد کنید")]
+            [StringLength(15, ErrorMessage = " نام خانوادگی باید حداقل" + " {2}" + "و حداکثر" + "{1}" + "کارکتر باشد", MinimumLength = 2)]
             public string LastName { get; set; }
 
-            [Phone]
-            [Display(Name = "Phone number")]
+            [DataAnnotation.Social.Telephone]
+            [Display(Name = "شماره تلفن")]
             public string PhoneNumber { get; set; }
         }
 
@@ -99,17 +103,6 @@ namespace UltimateAspCoreProject.Areas.Identity.Pages.Account.Manage
                 StatusMessage = "Unexpected error when trying to update account details.";
                 return RedirectToPage();
             }
-
-            //var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            //if (Input.PhoneNumber != phoneNumber)
-            //{
-            //    var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-            //    if (!setPhoneResult.Succeeded)
-            //    {
-            //        StatusMessage = "Unexpected error when trying to set phone number.";
-            //        return RedirectToPage();
-            //    }
-            //}
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";

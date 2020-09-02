@@ -28,6 +28,17 @@ namespace DataAnnotation.Social
             string errorMessage = "";
             string strValue = value as string;
             PhoneNumber phoneNum;
+
+            if (isRequired)
+            {
+                if (string.IsNullOrEmpty(strValue))
+                {
+                    errorMessage = "شماره تلفن نمیتواند خالی باشد";
+                    return new ValidationResult(errorMessage);
+                }
+                return ValidationResult.Success;
+            }
+
             try
             {
                 phoneNum = phoneNumberUtil.Parse(strValue, region);
@@ -38,24 +49,16 @@ namespace DataAnnotation.Social
                 return new ValidationResult(errorMessage);
             }
 
-            if (isRequired)
-            {
-                if (IsEmpty(strValue))
-                {
-                    errorMessage = "شماره تلفن نمیتواند خالی باشد";
-                    return new ValidationResult(errorMessage);
-                }
-            }
 
             if (!phoneNumberUtil.IsValidNumber(phoneNum))
             {
                 errorMessage = "فرمت شماره صحیح نیست";
                 return new ValidationResult(errorMessage);
             }
+            validationContext.ObjectType.GetProperty(validationContext.MemberName)
+                .SetValue(validationContext.ObjectInstance,
+                phoneNumberUtil.Format(phoneNum, PhoneNumberFormat.INTERNATIONAL));
             return ValidationResult.Success;
         }
-
-        bool IsEmpty(string value) => String.IsNullOrEmpty(value);
-
     }
 }
